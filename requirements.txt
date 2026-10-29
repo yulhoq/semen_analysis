@@ -1,0 +1,9 @@
+streamlit>=1.35
+pandas>=2.0
+numpy
+scipy
+matplotlib
+seaborn
+openpyxl
+jinja2
+tabulate
