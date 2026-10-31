@@ -4,6 +4,8 @@ Run:  streamlit run app.py
 """
 from pathlib import Path
 
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st

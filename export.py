@@ -10,9 +10,22 @@ from analysis import Result
 
 
 def fig_bytes(fig, fmt: str = "png", dpi: int = 300) -> bytes:
+    """Export figures using Matplotlib's non-interactive Agg renderer."""
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+
     buf = io.BytesIO()
-    fig.savefig(buf, format=fmt, dpi=dpi, bbox_inches="tight", facecolor="white")
-    return buf.getvalue()
+    try:
+        canvas = FigureCanvasAgg(fig)
+        canvas.print_figure(
+            buf,
+            format=fmt,
+            dpi=dpi,
+            bbox_inches="tight",
+            facecolor="white",
+        )
+        return buf.getvalue()
+    finally:
+        buf.close()
 
 
 def table_csv(df: pd.DataFrame) -> bytes:
